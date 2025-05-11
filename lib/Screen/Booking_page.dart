@@ -143,124 +143,130 @@ class _DoctorBookingPageState extends State<DoctorBookingPage> {
         'B O O K   Y O U R   D O C T O R',
         style: GoogleFonts.yesevaOne(),
       )),
-      body: isLoading
-          ? const Center(child: CircularProgressIndicator())
-          : Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Align(
-                      alignment: Alignment.topLeft,
-                      child: Text("N A M E:  ${widget.doctorName}",
-                          style: GoogleFonts.yesevaOne(
-                            fontSize: 19,
-                          )),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Align(
-                      alignment: Alignment.topLeft,
-                      child: Text("S P E C I A L T Y:  ${widget.specialty}",
-                          style: GoogleFonts.yesevaOne(
-                            fontSize: 19,
-                          )),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Align(
-                      alignment: Alignment.topLeft,
-                      child: Text("Doctor Time:  ${widget.availableTime}",
-                          style: GoogleFonts.yesevaOne(
-                              fontSize: 19, color: Colors.grey[800])),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Row(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            "Total Slots: $maxSlots",
-                            style: GoogleFonts.yesevaOne(fontSize: 19),
-                          ),
-                        ),
-                        SizedBox(
-                          width: MediaQuery.of(context).size.width * .3,
-                        ),
-                        Text("Booked: $bookedCount",
-                            style: GoogleFonts.yesevaOne(fontSize: 19)),
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: TextField(
-                      controller: nameController,
-                      decoration: InputDecoration(
-                          label: Text(
-                            " P A T I E N T   N A M E",
-                            style: GoogleFonts.yesevaOne(),
-                          ),
-                          hintText: ("E N T E R   P A T I E N T   N A M E"),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(20),
-                          )),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width * .9,
-                    child: ElevatedButton(
-                      onPressed: availableSlots > 0 ? bookSlot : null,
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor:
-                            Colors.grey[800], // Button background color
-                        foregroundColor: Colors.white, // Text/icon color
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 24, vertical: 12),
-                        textStyle: const TextStyle(
-                            fontSize: 16, fontWeight: FontWeight.bold),
+      body: SingleChildScrollView(
+        child: isLoading
+            ? const Center(child: CircularProgressIndicator())
+            : Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Align(
+                        alignment: Alignment.topLeft,
+                        child: Text("N A M E:  ${widget.doctorName}",
+                            style: GoogleFonts.yesevaOne(
+                              fontSize: 19,
+                            )),
                       ),
-                      child:  Text("C O N F I R M    B O O K I N G",style: GoogleFonts.yesevaOne(),),
                     ),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Text("A V A I L A B L E:  $availableSlots",
-                      style: GoogleFonts.yesevaOne(
-                          fontSize: 19,
-                          fontWeight: FontWeight.bold,
-                          color:
-                              availableSlots > 0 ? Colors.green : Colors.red)),
-                ],
-              )
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Align(
+                        alignment: Alignment.topLeft,
+                        child: Text("S P E C I A L T Y:  ${widget.specialty}",
+                            style: GoogleFonts.yesevaOne(
+                              fontSize: 19,
+                            )),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Align(
+                        alignment: Alignment.topLeft,
+                        child: Text("Doctor Time:  ${widget.availableTime}",
+                            style: GoogleFonts.yesevaOne(
+                                fontSize: 19, color: Colors.grey[800])),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: SafeArea(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text(
+                                "Total Slots: $maxSlots",
+                                style: GoogleFonts.yesevaOne(fontSize: 19),
+                              ),
+                            ),
+                            Text("Booked: $bookedCount",
+                                style: GoogleFonts.yesevaOne(fontSize: 19)),
+                          ],
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: TextField(
+                        controller: nameController,
+                        decoration: InputDecoration(
+                            label: Text(
+                              " P A T I E N T   N A M E",
+                              style: GoogleFonts.yesevaOne(),
+                            ),
+                            hintText: ("E N T E R   P A T I E N T   N A M E"),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20),
+                            )),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width * .9,
+                      child: ElevatedButton(
+                        onPressed: availableSlots > 0 ? bookSlot : null,
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor:
+                              Colors.grey[800], // Button background color
+                          foregroundColor: Colors.white, // Text/icon color
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 24, vertical: 12),
+                          textStyle: const TextStyle(
+                              fontSize: 16, fontWeight: FontWeight.bold),
+                        ),
+                        child: Text(
+                          "C O N F I R M    B O O K I N G",
+                          style: GoogleFonts.yesevaOne(),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Text("A V A I L A B L E:  $availableSlots",
+                        style: GoogleFonts.yesevaOne(
+                            fontSize: 19,
+                            fontWeight: FontWeight.bold,
+                            color: availableSlots > 0
+                                ? Colors.green
+                                : Colors.red)),
+                  ],
+                )
 
-              // Column(
-              //   crossAxisAlignment: CrossAxisAlignment.start,
-              //   children: [
-              //
-              //     const SizedBox(height: 8),
-              //
-              //
-              //
-              //     const SizedBox(height: 20),
-              //
-              //     const SizedBox(height: 20),
-              //
+                // Column(
+                //   crossAxisAlignment: CrossAxisAlignment.start,
+                //   children: [
+                //
+                //     const SizedBox(height: 8),
+                //
+                //
+                //
+                //     const SizedBox(height: 20),
+                //
+                //     const SizedBox(height: 20),
+                //
 
-              // ),
-              ),
+                // ),
+                ),
+      ),
     );
   }
 }

@@ -74,45 +74,51 @@ class DoctorListPage extends StatelessWidget {
                           padding: const EdgeInsets.all(8.0),
                           child: Card(
                             elevation: 15,
-                            child: Container(
-                              height: 100,
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  ListTile(
-                                    leading: Icon(Icons.person, size: 35),
-                                    title: Text(
-                                      doctorName,
-                                      style: GoogleFonts.yesevaOne(
-                                        fontSize: 19,
-                                      ),
-                                    ),
-                                    subtitle: Text(
-                                      availableTime,
-                                      style: GoogleFonts.yesevaOne(),
-                                    ),
-                                    trailing: Text(
-                                      specialty,
-                                      style:
-                                          GoogleFonts.yesevaOne(fontSize: 17),
-                                    ),
-                                    onTap: () {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (_) => DoctorBookingPage(
-                                            hospitalname: hospitalName,
-                                            doctorId: doctorId,
-                                            doctorName: doctorName,
-                                            availableTime: availableTime,
-                                            specialty: specialty,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                ListTile(
+                                  leading: Icon(Icons.person, size: 35),
+                                  title: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Column(
+                                      children: [
+                                        Text(
+                                          doctorName,
+                                          style: GoogleFonts.yesevaOne(
+                                            fontSize: 19,
                                           ),
                                         ),
-                                      );
-                                    },
+                                        Text(
+                                          availableTime,
+                                          style: GoogleFonts.yesevaOne(),
+                                        ),
+                                        Text(
+                                          "SPECIALTY:${specialty}",
+                                          style:
+                                          GoogleFonts.yesevaOne(fontSize: 17),
+                                        ),
+                                      ],
+                                    ),
                                   ),
-                                ],
-                              ),
+
+
+                                  onTap: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (_) => DoctorBookingPage(
+                                          hospitalname: hospitalName,
+                                          doctorId: doctorId,
+                                          doctorName: doctorName,
+                                          availableTime: availableTime,
+                                          specialty: specialty,
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                ),
+                              ],
                             ),
                           ),
                         );
