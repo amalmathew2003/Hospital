@@ -21,7 +21,6 @@ class BookingConfirmationPage extends StatelessWidget {
     required this.bookingNumber,
   });
 
-  // Function to generate PDF
   Future<void> _generatePdf() async {
     final pdf = pw.Document();
 
@@ -32,11 +31,11 @@ class BookingConfirmationPage extends StatelessWidget {
           children: [
             pw.Text('Booking Confirmation',
                 style:
-                    pw.TextStyle(fontSize: 24, fontWeight: pw.FontWeight.bold)),
+                pw.TextStyle(fontSize: 24, fontWeight: pw.FontWeight.bold)),
             pw.SizedBox(height: 10),
-            pw.Text('Patient Name: $patientName',
-                style: pw.TextStyle(fontSize: 18)),
             pw.Text('Hospital Name: $hospitalName',
+                style: pw.TextStyle(fontSize: 20,fontWeight:pw.FontWeight.bold)),
+            pw.Text('Patient Name: $patientName',
                 style: pw.TextStyle(fontSize: 18)),
             pw.Text('Doctor Name: $doctorName',
                 style: pw.TextStyle(fontSize: 18)),
@@ -52,6 +51,26 @@ class BookingConfirmationPage extends StatelessWidget {
     await Printing.sharePdf(
         bytes: await pdf.save(), filename: 'Booking_Confirmation.pdf');
   }
+
+// Helper method to simulate ListTile
+  pw.Widget _buildListTile(String title, String value) {
+    return pw.Padding(
+      padding: const pw.EdgeInsets.symmetric(vertical: 4),
+      child: pw.Row(
+        mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
+        children: [
+          pw.Text("$title:",
+              style: pw.TextStyle(
+                  fontSize: 16, fontWeight: pw.FontWeight.bold)),
+          pw.Text(value,
+              style: pw.TextStyle(fontSize: 16, color: PdfColors.grey800)),
+        ],
+      ),
+    );
+  }
+
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -117,14 +136,15 @@ class BookingConfirmationPage extends StatelessWidget {
                   )),
                 ),
                 Text(
-                  "NO:${bookingNumber}",
+                  "NO: ${bookingNumber}",
                   style: GoogleFonts.yesevaOne(fontSize: 20),
                 ),
                 SizedBox(height: 20),
-                ElevatedButton(
-                  onPressed: _generatePdf,
-                  child: Text('Download Booking Details'),
-                ),
+                IconButton(onPressed: _generatePdf, icon: Icon(Icons.download_outlined,color: Colors.black,size: 29,))
+                // ElevatedButton(
+                //   onPressed: _generatePdf,
+                //   child: Text('Download Booking Details'),
+
               ],
             ),
           ),
