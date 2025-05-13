@@ -6,6 +6,7 @@ import 'package:hospitals/Screen/Home_Page.dart';
 import 'Firebase/firebase_options.dart';
 import 'Screen/Auth_page.dart';
 import 'Screen/Login_Screen.dart';
+import 'Screen/Spalch_Screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -20,9 +21,10 @@ class app extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: AuthPage(),
-      initialRoute: '/home',
+      home: SpalchScreen(),
+      initialRoute: '/splash',
       routes: {
+        '/splash':(context)=>SpalchScreen(),
         '/login':(context)=>LoginScreen(),
        '/home':(context)=>HomePage(Userid: "Userid")
       }
