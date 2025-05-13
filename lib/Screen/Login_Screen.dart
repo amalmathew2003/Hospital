@@ -155,7 +155,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     padding: const EdgeInsets.all(8.0),
                     child: GestureDetector(
                         onTap: () {
-                          Navigator.push(context, MaterialPageRoute(
+                          Navigator.pushReplacement(context, MaterialPageRoute(
                               builder: (BuildContext context) {
                             return RegisterPage();
                           }));

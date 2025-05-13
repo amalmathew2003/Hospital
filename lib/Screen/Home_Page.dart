@@ -19,11 +19,20 @@ class _HomePageState extends State<HomePage> {
   final user = FirebaseAuth.instance.currentUser;
 
   Future<String?> getuser() async {
-    // Use the correct Userid from widget
-    DocumentSnapshot doc =
-    await FirebaseFirestore.instance.collection('user').doc(widget.Userid).get();
-    return doc.exists ? doc['name'] : null;
+    DocumentSnapshot doc = await FirebaseFirestore.instance
+        .collection('user')
+        .doc(widget.Userid)
+        .get();
+
+    print('User document: ${doc.data()}');
+
+    if (doc.exists && doc.data() != null) {
+      final data = doc.data() as Map<String, dynamic>;
+      return data['name'];
+    }
+    return null;
   }
+
 
   Future<void> Logout(BuildContext context) async {
     await FirebaseAuth.instance.signOut();
